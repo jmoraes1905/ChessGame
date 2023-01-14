@@ -24,10 +24,21 @@ public class ChessMatch {
 		}
 		return mat;	
 	}
+	/*Notice that since the pieces are placed on the board accordingly to the matrix position
+	 * instead of the chess position, we must create a method of placement that converts
+	 * the chess_
+	 * position, set by the player, to a matrix_position, read by the Board Layer
+	 */
+	
+	public void placeNewPiece(char column, int row, ChessPiece piece){
+		board.placePiece(piece, new ChessPosition(column,row).toPosition());
+	}
 	
 	private void initialSetup(){
-		board.placePiece(new Rook(board,Color.WHITE),new Position(1,0) );
-		board.placePiece(new King(board,Color.BLACK), new Position(7,0));
+		
+		placeNewPiece('b',1,new Rook(board,Color.WHITE));
+		placeNewPiece('e',8,new King(board,Color.BLACK));
+		placeNewPiece('h',8,new Rook(board,Color.BLACK));
 	}
 	
 }
