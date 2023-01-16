@@ -47,6 +47,23 @@ public class Board {
 		piece.position = position; // The pieces' position is always accessible since Piece and Board share the same package 
 	}
 	
+	public Piece removePiece(Position position) {
+		if(!positionExists(position)) {
+			throw new BoardException("Position is not on board!");
+		}
+		if(!thereIsAPiece(position)) {
+			return null;
+		}
+		
+		else {
+			Piece aux = piece(position);
+			aux.position = null;
+			pieces[position.getRow()][position.getColumn()] = null;
+			return aux;
+		}
+		
+	}
+	
 	public boolean positionExists(int row, int column) {
 		return row<= this.rows && row>= 0 &&column<=this.columns&&column>=0;
 	}
