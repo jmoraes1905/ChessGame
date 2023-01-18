@@ -1,6 +1,7 @@
 package Chess;
 
 import Boardgame.Board;
+import Boardgame.BoardException;
 import Boardgame.Piece;
 import Boardgame.Position;
 import Chess.pieces.King;
@@ -35,6 +36,7 @@ public class ChessMatch {
 		Position source = sourcePosition.toPosition();
 		Position target = targetPosition.toPosition();
 		validateSourcePosition(source);
+	//	validateTargetPosition(source, target);
 		Piece capturedPiece = makeMove(source,target);
 		return (ChessPiece)capturedPiece;
 	}
@@ -54,6 +56,12 @@ public class ChessMatch {
 			throw new ChessException("There is no possible moves for this piece.");
 		}
 	}
+	
+/*	private void validateTargetPosition(Position source, Position target) {
+		if(!board.piece(source).possibleMove(target)) {
+			throw new BoardException("Invalid target position!");
+		}
+	}*/
 	
 	public void placeNewPiece(char column, int row, ChessPiece piece){
 		board.placePiece(piece, new ChessPosition(column,row).toPosition());
