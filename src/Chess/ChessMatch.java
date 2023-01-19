@@ -26,6 +26,12 @@ public class ChessMatch {
 		}
 		return mat;	
 	}
+	
+	public boolean[][] PossibleMoves(ChessPosition sourcePosition){
+		Position position = sourcePosition.toPosition();
+		validateSourcePosition(position);
+		return board.piece(position).possibleMoves();
+	}
 	/*Notice that since the pieces are placed on the board accordingly to the matrix position
 	 * instead of the chess position, we must create a method of placement that converts
 	 * the chess_
@@ -34,17 +40,12 @@ public class ChessMatch {
 	public ChessPiece performChessMove(ChessPosition sourcePosition, ChessPosition targetPosition) {
 		
 		Position source = sourcePosition.toPosition();
-		//System.out.println("Source!");
 		Position target = targetPosition.toPosition();
-		//System.out.println("Target!");
-		System.out.println("Line 40 "+"Row: " + source.getRow() +" " + "Column: " + source.getColumn());
 		validateSourcePosition(source);
 		System.out.println(source);
 		validateTargetPosition(source, target);
 		System.out.println(target);
-		//System.out.println(source+" "+target);
 		Piece capturedPiece = makeMove(source,target);
-		//System.out.println(capturedPiece);
 		return (ChessPiece)capturedPiece;
 	}
 	
@@ -59,7 +60,6 @@ public class ChessMatch {
 		if(!board.thereIsAPiece(source)) {
 			throw new ChessException("There is no piece at source position");
 		}
-		System.out.println("Line 61 "+"Row: " + source.getRow() +" " + "Column: " + source.getColumn());
 		if(!board.piece(source).isThereAnyPossibleMoves()) {
 			throw new ChessException("There is no possible moves for this piece.");
 		}

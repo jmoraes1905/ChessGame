@@ -36,7 +36,6 @@ public class Board {
 		if(!positionExists(position)) {
 			throw new BoardException("Position is not on the board");
 		}
-		System.out.println("Row: " + position.getRow() +" " + "Column: " + position.getColumn());
 		return pieces[position.getRow()][position.getColumn()];//uses the above method for auxiliary implementation
 	}
 	
@@ -77,7 +76,6 @@ public class Board {
 		if(!positionExists(position)) {
 			throw new BoardException("Position is not on the board");
 		}
-		System.out.println("Line 79 " + "Row: " + position.getRow() +" " + "Column: " + position.getColumn());
 		return piece(position)!= null;
 	}
 	

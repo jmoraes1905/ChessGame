@@ -20,7 +20,6 @@ public class Rook extends ChessPiece {
 	@Override
 	public boolean[][] possibleMoves() {
 		boolean mat[][] = new boolean[getBoard().getRows()][getBoard().getColumns()];
-		//System.out.println(this.getBoard().getRows()+ " "+ this.getBoard().getColumns());
 		Position p = new Position(0,0);
 		
 		//Check above the current position
@@ -44,7 +43,6 @@ public class Rook extends ChessPiece {
 		
 		//Check right side of the current position
 		p.setValues(position.getRow(), position.getColumn()+1);
-		System.out.println("Line 47"+"Row: " + position.getRow() +" " + "Column: " + position.getColumn());
 		while (getBoard().positionExists(p) && !getBoard().thereIsAPiece(p)) {
 			mat[p.getRow()][p.getColumn()] = true;
 			p.setColumn(p.getColumn() + 1);
