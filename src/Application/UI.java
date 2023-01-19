@@ -43,6 +43,7 @@ public class UI {
 				char column = s.charAt(0);
 				
 				int row = Integer.parseInt(s.substring(1));
+				//System.out.println(column +" " + row);
 				return new ChessPosition(column,row);
 			}
 			

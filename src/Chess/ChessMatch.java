@@ -34,16 +34,23 @@ public class ChessMatch {
 	public ChessPiece performChessMove(ChessPosition sourcePosition, ChessPosition targetPosition) {
 		
 		Position source = sourcePosition.toPosition();
+		//System.out.println("Source!");
 		Position target = targetPosition.toPosition();
+		//System.out.println("Target!");
+		System.out.println("Line 40 "+"Row: " + source.getRow() +" " + "Column: " + source.getColumn());
 		validateSourcePosition(source);
-	//	validateTargetPosition(source, target);
+		System.out.println(source);
+		validateTargetPosition(source, target);
+		System.out.println(target);
+		//System.out.println(source+" "+target);
 		Piece capturedPiece = makeMove(source,target);
+		//System.out.println(capturedPiece);
 		return (ChessPiece)capturedPiece;
 	}
 	
 	private Piece makeMove(Position source, Position target) {
 		Piece sourcePiece = board.removePiece(source);
-		Piece capturedPiece =board.removePiece(target);
+		Piece capturedPiece = board.removePiece(target);
 		board.placePiece(sourcePiece, target);
 		return capturedPiece;
 	}
@@ -52,16 +59,19 @@ public class ChessMatch {
 		if(!board.thereIsAPiece(source)) {
 			throw new ChessException("There is no piece at source position");
 		}
+		System.out.println("Line 61 "+"Row: " + source.getRow() +" " + "Column: " + source.getColumn());
 		if(!board.piece(source).isThereAnyPossibleMoves()) {
 			throw new ChessException("There is no possible moves for this piece.");
 		}
+		System.out.println(source);
 	}
 	
-/*	private void validateTargetPosition(Position source, Position target) {
+	private void validateTargetPosition(Position source, Position target) {
 		if(!board.piece(source).possibleMove(target)) {
 			throw new BoardException("Invalid target position!");
 		}
-	}*/
+		System.out.println(target);
+	}
 	
 	public void placeNewPiece(char column, int row, ChessPiece piece){
 		board.placePiece(piece, new ChessPosition(column,row).toPosition());
